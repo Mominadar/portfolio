@@ -1,0 +1,879 @@
+/* ============================================================================
+   Freelance Developer Portfolio — styles
+   ----------------------------------------------------------------------------
+   Structure:
+     1. Design tokens (CSS custom properties)
+     2. Base / resets
+     3. Layout helpers
+     4. Navigation
+     5. Hero
+     6. Section headings
+     7. Selected work
+     8. Toolbox (skills)
+     9. Experience log (timeline)
+    10. Open to (engagements)
+    11. Contact
+    12. Footer
+    13. Animations
+    14. Responsive
+   The accent colour is injected at runtime from js/constants.js as
+   `--orange` on :root, so changing it there recolours the whole site.
+   ========================================================================== */
+
+/* 1. Design tokens ---------------------------------------------------------- */
+:root {
+  --bg: #0a0c11;
+  --panel: #101319;
+  --panel2: #151a22;
+  --line: rgba(237, 240, 244, 0.09);
+  --fg: #edf0f4;
+  --muted: #8b93a1;
+  --code: #c9cfd8;
+
+  --orange: #ff6a3d; /* accent — overridden by JS from constants.js */
+  --amber: #ffd166;
+  --teal: #5eead4;
+  --pink: #ff8fb3;
+
+  --maxw: 1180px;
+  --gutter: 48px;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* 2. Base / resets ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Ambient background: two soft glows + faint horizontal scanlines. */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(255, 106, 61, 0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(94, 234, 212, 0.1), transparent 60%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+}
+
+/* 3. Layout helpers --------------------------------------------------------- */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.section {
+  padding-top: 0;
+  padding-bottom: 140px;
+}
+
+/* 4. Navigation ------------------------------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--gutter);
+  background: rgba(10, 12, 17, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.nav__brand-mark {
+  color: var(--orange);
+}
+
+.nav__brand-name {
+  font-style: italic;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 12.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.nav__link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav__link:hover {
+  color: var(--fg);
+}
+
+.nav__link--cta {
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 6px 14px;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav__link--cta:hover {
+  background: var(--orange);
+  color: var(--bg);
+}
+
+/* 5. Hero ------------------------------------------------------------------- */
+.hero {
+  padding-top: 120px;
+  padding-bottom: 100px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 14px;
+  margin-bottom: 36px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 11.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.hero__title {
+  margin: 0 0 28px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 0.98;
+  letter-spacing: -0.5px;
+}
+
+.hero__intro {
+  max-width: 560px;
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 14px;
+}
+
+/* Buttons (shared) */
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn--primary {
+  background: var(--orange);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.btn--primary:hover {
+  background: var(--amber);
+}
+
+.btn--ghost {
+  color: var(--fg);
+  border: 1px solid var(--line);
+}
+
+.btn--ghost:hover {
+  border-color: var(--fg);
+}
+
+/* Terminal card */
+.terminal {
+  margin-top: 70px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: var(--panel2);
+  border-bottom: 1px solid var(--line);
+}
+
+.terminal__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal__dot--red { background: #ff5f56; }
+.terminal__dot--yellow { background: #ffbd2e; }
+.terminal__dot--green { background: #27c93f; }
+
+.terminal__path {
+  margin-left: 10px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.terminal__body {
+  padding: 24px 26px;
+  font-size: 13.5px;
+  line-height: 2;
+  color: var(--code);
+}
+
+.terminal__prompt {
+  color: var(--teal);
+}
+
+.terminal__out {
+  color: var(--muted);
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 8px;
+  vertical-align: middle;
+  background: var(--fg);
+  animation: blink 1.1s step-end infinite;
+}
+
+/* 6. Section headings ------------------------------------------------------- */
+.section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.section__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.section__note {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section__lead {
+  max-width: 560px;
+  margin: 0 0 48px;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+/* 7. Selected work ---------------------------------------------------------- */
+.work__group + .work__group {
+  margin-top: 56px;
+}
+
+.work__group-title {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work__item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 28px;
+  align-items: start;
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+.work__item:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.work__index {
+  padding-top: 6px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--muted);
+}
+
+.work__heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.work__name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+}
+
+.work__desc {
+  max-width: 640px;
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  color: var(--code);
+  background: var(--panel2);
+  border: 1px solid var(--line);
+}
+
+.work__year {
+  padding-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* 8. Toolbox (skills) ------------------------------------------------------- */
+.toolbox {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.toolbox__group {
+  background: var(--panel);
+  padding: 28px;
+}
+
+.toolbox__title {
+  margin-bottom: 18px;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toolbox__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill {
+  font-size: 13px;
+  padding: 6px 11px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  /* colour + border tint set inline per group from constants.js */
+}
+
+/* 9. Experience log (timeline) ---------------------------------------------- */
+.cv__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cv__subhead {
+  margin: 0 0 44px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.timeline__item {
+  position: relative;
+  padding-bottom: 44px;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -33px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg);
+}
+
+.timeline__meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.timeline__range {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.timeline__role {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.timeline__at {
+  margin-left: -6px;
+  margin-right: -6px;
+  color: var(--muted);
+}
+
+.timeline__org {
+  padding: 3px 9px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  font-size: 11px;
+  letter-spacing: 0.7px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.timeline__org:hover {
+  filter: brightness(1.3);
+}
+
+.timeline__highlights {
+  max-width: 680px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--code);
+}
+
+.timeline__highlights li + li {
+  margin-top: 7px;
+}
+
+.timeline__highlights li::marker {
+  color: var(--orange);
+}
+
+/* 10. Open to (engagements) ------------------------------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--orange);
+}
+
+.card__tag {
+  margin-bottom: 14px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.card__title {
+  margin: 0 0 12px;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.card__desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* 11. Contact --------------------------------------------------------------- */
+.contact {
+  padding-bottom: 90px;
+}
+
+.contact__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 60px;
+  background: linear-gradient(155deg, var(--panel), var(--panel2));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.contact__title {
+  margin: 0 0 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  font-weight: 400;
+}
+
+.contact__blurb {
+  max-width: 400px;
+  margin: 0 0 28px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.contact__email {
+  font-size: 19px;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--orange);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.contact__email:hover {
+  color: var(--orange);
+}
+
+.contact__socials {
+  display: flex;
+  gap: 22px;
+  margin-top: 34px;
+  font-size: 13px;
+}
+
+.contact__social {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact__social:hover {
+  color: var(--fg);
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form__field {
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 14px 16px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: var(--muted);
+}
+
+.form__field:focus {
+  border-color: var(--orange);
+}
+
+textarea.form__field {
+  resize: vertical;
+}
+
+.form__submit {
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: var(--bg);
+  background: var(--orange);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form__submit:hover {
+  background: var(--amber);
+}
+
+/* Success state */
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px;
+  text-align: center;
+  border: 1px dashed var(--teal);
+  border-radius: 8px;
+}
+
+.form-success__check {
+  font-size: 30px;
+  color: var(--teal);
+}
+
+.form-success__title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+}
+
+.form-success__text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* 12. Footer ---------------------------------------------------------------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 30px var(--gutter);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.footer__top {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__top:hover {
+  color: var(--fg);
+}
+
+/* 13. Animations ------------------------------------------------------------ */
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease both;
+}
+
+/* Stagger helpers for the hero */
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.18s; }
+.delay-3 { animation-delay: 0.28s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 14. Responsive ------------------------------------------------------------ */
+@media (max-width: 900px) {
+  :root {
+    --gutter: 28px;
+  }
+
+  .hero__title {
+    font-size: 64px;
+  }
+
+  .contact__panel {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav__links {
+    gap: 18px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* Hide secondary nav links on small screens, keep the CTA. */
+  .nav__link:not(.nav__link--cta) {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 72px;
+    padding-bottom: 60px;
+  }
+
+  .hero__title {
+    font-size: 46px;
+  }
+
+  .section {
+    padding-bottom: 90px;
+  }
+
+  .section__title {
+    font-size: 36px;
+  }
+
+  .work__item {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .work__index {
+    display: none;
+  }
+
+  .contact__panel {
+    padding: 28px;
+  }
+
+  .contact__title {
+    font-size: 34px;
+  }
+}
