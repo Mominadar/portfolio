@@ -109,6 +109,11 @@ img {
 .section {
   padding-top: 0;
   padding-bottom: 140px;
+  scroll-margin-top: 96px;
+}
+
+.contact {
+  scroll-margin-top: 96px;
 }
 
 /* 4. Navigation ------------------------------------------------------------- */
@@ -751,6 +756,14 @@ img {
 
   .contact__panel {
     padding: 40px;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 721px) {
+  .nav__links {
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.8px;
   }
 }
 

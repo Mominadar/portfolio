@@ -28,7 +28,7 @@
     />
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css?v=5" />
+    <link rel="stylesheet" href="css/styles.css?v=7" />
   </head>
 
   <body>
@@ -42,11 +42,11 @@
         <span class="nav__brand-name" data-bind="name">Momina Babar</span>
       </a>
       <div class="nav__links">
-        <a class="nav__link" href="#work">Work</a>
-        <a class="nav__link" href="#cv">CV</a>
-        <a class="nav__link" href="#skills">Skills</a>
-        <a class="nav__link" href="#rates" data-rates-nav>Rates</a>
-        <a class="nav__link nav__link--cta" href="#contact">Contact</a>
+        <a class="nav__link" href="#work">Projects</a>
+        <a class="nav__link" href="#cv">Experience</a>
+        <a class="nav__link" href="#skills">Toolbox</a>
+        <a class="nav__link" href="#contact">Contact</a>
+        <a class="nav__link nav__link--cta" data-bind="cvLink" href="#" download="Software-Engineer-Momina-Babar.pdf">Download Resume</a>
       </div>
     </nav>
 
@@ -91,10 +91,10 @@
         </div>
       </header>
 
-      <!-- Selected work -->
+      <!-- Projects -->
       <section id="work" class="section container">
         <div class="section__head">
-          <h2 class="section__title">Selected work</h2>
+          <h2 class="section__title">Projects</h2>
           <span class="section__note" data-bind="projectCount">projects</span>
         </div>
         <div data-list="projects"></div>
@@ -105,7 +105,7 @@
         <div class="cv__head">
           <h2 class="section__title">Experience log</h2>
           <a class="nav__link--cta" data-bind="cvLink" href="#" download="Software-Engineer-Momina-Babar.pdf" style="text-decoration: none">
-            ↓ Download full CV (PDF)
+            Download Resume
           </a>
         </div>
         <p class="cv__subhead">git log --reverse --oneline career</p>
