@@ -232,7 +232,7 @@ const SITE = {
 
   /* --- Contact copy ------------------------------------------------------ */
   contact: {
-    heading: "Let's work\ntogether.",
+    heading: "Let's work together.",
     blurb:
       "Open to new roles and opportunities. Fastest way to reach me is " +
       "email — I reply within a day.",
