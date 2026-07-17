@@ -47,7 +47,7 @@ const SITE = {
   accentColor: "#ff6a3d",
 
   /* --- Links ------------------------------------------------------------- */
-  cvLink: "#", // link to your CV/résumé PDF
+  cvLink: "Software-Engineer-Momina-Babar.pdf",
   socials: {
     github: "https://github.com/Mominadar",
     linkedin: "https://www.linkedin.com/in/mominababardar",
@@ -112,7 +112,7 @@ const SITE = {
           name: "Agha & Associates",
           category: "Web & SEO",
           tagColor: "#5eead4",
-          year: "2023",
+          year: "2026",
           link: "https://aghaandassociates.com/",
           description:
             "A search-optimized website for a law firm that ranks highly for " +
@@ -123,7 +123,7 @@ const SITE = {
           name: "Apex Law Firm",
           category: "Web & SEO",
           tagColor: "#5eead4",
-          year: "2023",
+          year: "2026",
           link: "https://apexlawf.com/",
           description:
             "A search-optimized website for a law firm that ranks highly for " +
@@ -155,7 +155,7 @@ const SITE = {
     { title: "Languages", color: "#ff6a3d", items: ["TypeScript", "JavaScript", "Python", "SQL"] },
     { title: "Frontend", color: "#ffd166", items: ["React", "Next.js", "Remix", "HTML/CSS"] },
     { title: "Backend", color: "#5eead4", items: ["Node.js", "NestJS", "MongoDB", "PostgreSQL", "MySQL"] },
-    { title: "AI", color: "#a78bfa", items: ["Claude", "ChatGPT", "Gemini", "AI agents", "RAG", "LLM prototyping"] },
+    { title: "AI", color: "#a78bfa", items: ["Claude", "ChatGPT", "Gemini", "KIRO", "Lovable", "Context Engineering", "Prompt Engineering", "AI agents", "RAG", "LLM prototyping", "LLM Evaluation"] },
     { title: "DevOps", color: "#ff8fb3", items: ["AWS", "Azure", "Docker", "Git", "CI/CD"] },
     { title: "Engineering", color: "#8b93a1", items: ["System architecture", "Testing", "Engineering standards", "Mentoring", "Operational excellence"] },
   ],

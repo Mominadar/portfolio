@@ -28,7 +28,7 @@
     />
 
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="css/styles.css?v=2" />
+    <link rel="stylesheet" href="css/styles.css?v=3" />
   </head>
 
   <body>
@@ -43,8 +43,8 @@
       </a>
       <div class="nav__links">
         <a class="nav__link" href="#work">Work</a>
-        <a class="nav__link" href="#skills">Skills</a>
         <a class="nav__link" href="#cv">CV</a>
+        <a class="nav__link" href="#skills">Skills</a>
         <a class="nav__link" href="#rates" data-rates-nav>Rates</a>
         <a class="nav__link nav__link--cta" href="#contact">Contact</a>
       </div>
@@ -100,6 +100,18 @@
         <div data-list="projects"></div>
       </section>
 
+      <!-- Experience log -->
+      <section id="cv" class="section container">
+        <div class="cv__head">
+          <h2 class="section__title">Experience log</h2>
+          <a class="nav__link--cta" data-bind="cvLink" href="#" download="Software-Engineer-Momina-Babar.pdf" style="text-decoration: none">
+            ↓ Download full CV (PDF)
+          </a>
+        </div>
+        <p class="cv__subhead">git log --reverse --oneline career</p>
+        <div class="timeline" data-list="timeline"></div>
+      </section>
+
       <!-- Toolbox -->
       <section id="skills" class="section container">
         <h2 class="section__title" style="margin-bottom: 12px">Toolbox</h2>
@@ -108,18 +120,6 @@
           think about them.
         </p>
         <div class="toolbox" data-list="skills"></div>
-      </section>
-
-      <!-- Experience log -->
-      <section id="cv" class="section container">
-        <div class="cv__head">
-          <h2 class="section__title">Experience log</h2>
-          <a class="nav__link--cta" data-bind="cvLink" href="#" style="text-decoration: none">
-            ↓ Download full CV (PDF)
-          </a>
-        </div>
-        <p class="cv__subhead">git log --reverse --oneline career</p>
-        <div class="timeline" data-list="timeline"></div>
       </section>
 
       <!-- Open to (engagements) -->
@@ -142,23 +142,7 @@
             <div class="contact__socials">
               <a class="contact__social" data-bind="github" href="#" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
               <a class="contact__social" data-bind="linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a class="contact__social" data-bind="x" href="#" target="_blank" rel="noopener noreferrer">X ↗</a>
             </div>
-          </div>
-
-          <!-- Contact form -->
-          <form class="form" id="contact-form" novalidate>
-            <input class="form__field" name="name" required placeholder="your name" autocomplete="name" />
-            <input class="form__field" name="email" type="email" required placeholder="your email" autocomplete="email" />
-            <textarea class="form__field" name="message" required placeholder="what are you building?" rows="4"></textarea>
-            <button class="form__submit" type="submit">Send message →</button>
-          </form>
-
-          <!-- Success state (revealed after submit) -->
-          <div class="form-success is-hidden" id="contact-success">
-            <div class="form-success__check">✓</div>
-            <div class="form-success__title">Message sent</div>
-            <p class="form-success__text">Thanks — I'll get back to you shortly.</p>
           </div>
         </div>
       </section>
@@ -170,7 +154,7 @@
     </footer>
 
     <!-- Content data, then the renderer. Order matters: constants first. -->
-    <script src="js/constants.js?v=2"></script>
-    <script src="js/main.js?v=2"></script>
+    <script src="js/constants.js?v=3"></script>
+    <script src="js/main.js?v=3"></script>
   </body>
 </html>

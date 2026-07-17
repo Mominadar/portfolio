@@ -143,9 +143,6 @@
       case "linkedin":
         node.setAttribute("href", data.socials.linkedin);
         break;
-      case "x":
-        node.setAttribute("href", data.socials.x);
-        break;
       default:
         if (Object.prototype.hasOwnProperty.call(values, key)) {
           node.textContent = values[key];
@@ -295,35 +292,4 @@
     if (ratesNav) ratesNav.remove();
   }
 
-  // --- Contact form: mailto + success state --------------------------------
-
-  var form = $("#contact-form");
-  var success = $("#contact-success");
-
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      var name = form.elements.name.value.trim();
-      var email = form.elements.email.value.trim();
-      var message = form.elements.message.value.trim();
-
-      // Open the visitor's mail client pre-filled. On a static site there's no
-      // backend, so this is the honest way to "send" a message.
-      var subject = encodeURIComponent("Portfolio enquiry from " + name);
-      var bodyLines = [message, "", "— " + name + " (" + email + ")"];
-      var body = encodeURIComponent(bodyLines.join("\n"));
-      window.location.href =
-        "mailto:" + data.email + "?subject=" + subject + "&body=" + body;
-
-      // Show the confirmation state.
-      form.classList.add("is-hidden");
-      if (success) success.classList.remove("is-hidden");
-    });
-  }
 })();
