@@ -55,6 +55,8 @@ const SITE = {
 
   /* --- Section: Selected work -------------------------------------------- */
   // `tagColor` accepts any of the theme colours above.
+  // Set `private: true` on a project whose code/product can't be shared —
+  // it renders a "Private" badge instead of a link (the `link` is ignored).
   projectGroups: [
     {
       title: "Career Projects",
@@ -64,7 +66,7 @@ const SITE = {
           category: "Developer Platform",
           tagColor: "#5eead4",
           year: "2024 — now",
-          link: "#",
+          private: true,
           description:
             "A micro-frontend framework for UNICEF Office of Innovation prototypes, " +
             "reducing build-to-deploy time by 10× and accelerating the path from MVP to product.",
@@ -75,7 +77,7 @@ const SITE = {
           category: "Applied AI",
           tagColor: "#a78bfa",
           year: "2024 — now",
-          link: "#",
+          private: true,
           description:
             "An AI-assisted framework that enables non-technical teams to generate " +
             "real-world prototypes aligned with UNICEF guidelines.",
@@ -86,7 +88,7 @@ const SITE = {
           category: "Enterprise",
           tagColor: "#ff8fb3",
           year: "2022 — 2024",
-          link: "#",
+          private: true,
           description:
             "Architected and delivered a multi-tenant ERP platform with a " +
             "double-entry accounting module and shared CI/CD infrastructure.",
@@ -97,7 +99,7 @@ const SITE = {
           category: "Observability",
           tagColor: "#ffd166",
           year: "2021",
-          link: "#",
+          private: true,
           description:
             "A React monitoring dashboard with automated health alerts that " +
             "reduced client system downtime by 70%.",

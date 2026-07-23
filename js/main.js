@@ -175,15 +175,32 @@
       group.projects.forEach(function (p) {
         projectIndex += 1;
         var index = String(projectIndex).padStart(2, "0");
+        var isPrivate = p.private === true;
+        var hasLink = !isPrivate && p.link && p.link !== "#";
 
         var chips = p.stack.map(function (tech) {
           return el("span", { class: "chip" }, [tech]);
         });
 
-        var heading = el("div", { class: "work__heading" }, [
+        var headingChildren = [
           el("h3", { class: "work__name" }, [p.name]),
           el("span", { class: "tag", style: "color:" + p.tagColor }, [p.category]),
-        ]);
+        ];
+        // Private work: signal that the code/product can't be shared publicly.
+        if (isPrivate) {
+          headingChildren.push(
+            el(
+              "span",
+              {
+                class: "work__private",
+                title: "Code and product are private and can't be shared",
+              },
+              ["🔒 Private"]
+            )
+          );
+        }
+
+        var heading = el("div", { class: "work__heading" }, headingChildren);
 
         var body = el("div", null, [
           heading,
@@ -191,15 +208,21 @@
           el("div", { class: "chips" }, chips),
         ]);
 
-      var item = el(
-        "a",
-        externalLinkAttrs({ class: "work__item", href: p.link }, p.link),
-          [
-            el("div", { class: "work__index" }, [index]),
-            body,
-            el("div", { class: "work__year" }, [p.year + " ↗"]),
-          ]
-        );
+        // Linkable projects render as an <a> (with the "↗" affordance);
+        // private / link-less ones render as a plain, non-clickable block.
+        var itemChildren = [
+          el("div", { class: "work__index" }, [index]),
+          body,
+          el("div", { class: "work__year" }, [hasLink ? p.year + " ↗" : p.year]),
+        ];
+
+        var item = hasLink
+          ? el(
+              "a",
+              externalLinkAttrs({ class: "work__item", href: p.link }, p.link),
+              itemChildren
+            )
+          : el("div", { class: "work__item work__item--static" }, itemChildren);
 
         section.appendChild(item);
       });
@@ -240,12 +263,16 @@
       };
 
       if (t.orgLink) {
+        orgAttrs.class = "timeline__org timeline__org--link";
         orgAttrs.href = t.orgLink;
         orgAttrs.target = "_blank";
         orgAttrs.rel = "noopener noreferrer";
       }
 
-      var org = el(t.orgLink ? "a" : "span", orgAttrs, [t.org]);
+      // Append a "↗" to linked orgs so it's obviously clickable.
+      var org = el(t.orgLink ? "a" : "span", orgAttrs, [
+        t.orgLink ? t.org + " ↗" : t.org,
+      ]);
 
       var meta = el("div", { class: "timeline__meta" }, [
         el("span", { class: "timeline__range" }, [t.range]),

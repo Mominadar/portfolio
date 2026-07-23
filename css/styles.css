@@ -389,6 +389,30 @@ img {
   background: rgba(255, 255, 255, 0.02);
 }
 
+/* Non-clickable rows (private / no external link) shouldn't feel interactive. */
+.work__item--static {
+  cursor: default;
+}
+
+.work__item--static:hover {
+  background: transparent;
+}
+
+/* "Private" badge — muted, with a subtle lock, to show code/product is closed. */
+.work__private {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: var(--muted);
+  border: 1px dashed var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+}
+
 .work__index {
   padding-top: 6px;
   font-family: var(--serif);
@@ -565,6 +589,14 @@ img {
 
 .timeline__org:hover {
   filter: brightness(1.3);
+}
+
+/* Linked orgs read as links: underline + pointer + the appended "↗". */
+.timeline__org--link {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .timeline__highlights {
